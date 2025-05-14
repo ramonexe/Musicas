@@ -11,6 +11,7 @@ const HeaderContainer = styled.header`
     padding: 10px 20px;
     background-color: #282c34;
     color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 `;
 
 const ButtonGroup = styled.div`
