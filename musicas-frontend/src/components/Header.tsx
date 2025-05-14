@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Botao from './Botao';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../public/icon.svg';
+import { Plus } from 'lucide-react';
 
 const HeaderContainer = styled.header`
     display: flex;
@@ -27,7 +28,7 @@ const Header: React.FC = () => {
             <img src={logo} alt="Logo" style={{ width: '42px', height: '42px', marginRight: '20px' }} />
             <ButtonGroup>
                 <Botao onClick={() => navigate("/")}>Lista de Músicas</Botao>
-                <Botao onClick={() => navigate("/adicionar")}>Adicionar Música</Botao>
+                <Botao onClick={() => navigate("/adicionar")} icon={<Plus />}>Adicionar Música</Botao>
             </ButtonGroup>
         </HeaderContainer>
     );

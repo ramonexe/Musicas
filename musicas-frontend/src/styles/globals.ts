@@ -7,6 +7,7 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     background-color: #282c34;
+    color:rgb(200, 207, 212);
     font-family: "Montserrat", sans-serif;
 
     a {
