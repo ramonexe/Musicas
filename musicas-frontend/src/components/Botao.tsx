@@ -2,14 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface BotaoProps {
-  asLink?: boolean;
   onClick?: () => void;
-  disabled?: boolean;
   children: React.ReactNode;
   icon?: React.ReactNode;
 }
 
-const StyledButton = styled.button<{ disabled?: boolean; temIcone: boolean }>`
+const StyledButton = styled.button<{ temIcone: boolean }>`
   display: inline-flex;
   align-items: center;
   gap: ${(props) => (props.temIcone ? '0' : '8px')};
@@ -17,10 +15,10 @@ const StyledButton = styled.button<{ disabled?: boolean; temIcone: boolean }>`
   height: 40px;
   font-size: 16px;
   color: white;
-  background-color: ${(props) => (props.disabled ? '#ccc' : '#FF0000')};
+  background-color: #FF0000;
   border: none;
   border-radius: 5px;
-  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
+  cursor: pointer;
   overflow: hidden;
   transition: all 0.3s ease;
 
@@ -30,13 +28,17 @@ const StyledButton = styled.button<{ disabled?: boolean; temIcone: boolean }>`
     width: fit-content;
     padding: 0;
     justify-content: center;
-
+    
     &:hover {
       width: ${props.temIcone ? 'fit-content' : 'none'};
       padding: 0 12px 0 0;
       justify-content: flex-start;
     }
   `}
+
+    &:hover {
+        background-color: #b31212;
+    }
 `;
 
 const IconContainer = styled.span`
@@ -60,9 +62,8 @@ const TextContainer = styled.span<{ temIcone: boolean }>`
   }
 `;
 
-const Botao: React.FC<BotaoProps> = ({ asLink, onClick, disabled, children, icon }) => {
+const Botao: React.FC<BotaoProps> = ({ onClick, children, icon }) => {
   const handleClick = () => {
-    if (disabled) return;
     onClick?.();
   };
 
@@ -70,9 +71,7 @@ const Botao: React.FC<BotaoProps> = ({ asLink, onClick, disabled, children, icon
 
   return (
     <StyledButton
-      as={asLink ? 'a' : 'button'}
       onClick={handleClick}
-      disabled={disabled}
       temIcone={temIcone}
     >
       {temIcone && <IconContainer>{icon}</IconContainer>}
