@@ -2,17 +2,27 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Botao from '../components/Botao';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const AdicionarMusica: React.FC = () => {
     const [titulo, setTitulo] = useState('');
     const [artista, setArtista] = useState('');
     const [anoLancamento, setAnoLancamento] = useState('');
+    const navigate = useNavigate();
 
     const handleAdicionarMusica = () => {
         if (!titulo || !artista || !anoLancamento) {
             toast.error('Por favor, preencha todos os campos.');
             return;
         }
+    };
+
+    const handleCancelar = () => {
+        setTitulo('');
+        setArtista('');
+        setAnoLancamento('');
+        toast.info('Adição de música cancelada.');
+        navigate('/');
     };
 
     return (
@@ -36,10 +46,18 @@ const AdicionarMusica: React.FC = () => {
                 value={anoLancamento}
                 onChange={(e) => setAnoLancamento(e.target.value)}
             />
-            <Botao onClick={handleAdicionarMusica}>Adicionar Música</Botao>
+            <BotaoContainer>
+                <Botao onClick={handleCancelar}>Cancelar</Botao>
+                <Botao onClick={handleAdicionarMusica}>Adicionar</Botao>
+            </BotaoContainer>
         </AdicionarMusicaContainer>
     );
 };
+
+const BotaoContainer = styled.div`
+    display: flex;
+    gap: 10px;
+`;
 
 const AdicionarMusicaContainer = styled.div`
     display: flex;
@@ -53,7 +71,9 @@ const Input = styled.input`
     width: 300px;
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #ccc;
+    background-color: #191b20;
+    color: #666;
+    border: 1px solid #40434d;
     border-radius: 5px;
 `;
 

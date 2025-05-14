@@ -38,8 +38,8 @@ const ListaMusicasContainer = styled.div`
 `;
 
 const MusicaItem = styled.div`
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+    background-color: #191b20;
+    border: 1px solid #40434d;
     border-radius: 5px;
     padding: 10px;
     margin: 10px 0;
@@ -51,7 +51,6 @@ const MusicaItem = styled.div`
 const MusicaTitle = styled.h3`
     margin: 0;
     font-size: 18px;
-    color: #333;
 `;
 
 const MusicaDetails = styled.p`
