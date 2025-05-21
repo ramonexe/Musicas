@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { listar } from '../services/axiosServices';
+import { toast } from 'react-toastify';
 
-export const ListaMusicas: React.FC = () => {
+const ListaMusicas: React.FC = () => {
     const [musicas, setMusicas] = useState<any[]>([]);
 
     useEffect(() => {
@@ -13,7 +14,9 @@ export const ListaMusicas: React.FC = () => {
                 console.log(response);
                 console.log(response.data);
             } catch (error) {
-                console.error('Erro ao buscar músicas:', error);
+                toast.error('Erro ao buscar músicas');
+            } finally {
+                toast.success('Músicas carregadas com sucesso');
             }
         };
 
@@ -82,3 +85,5 @@ const MusicaDetalhes = styled.p`
     font-size: 14px;
     color: #999;
 `;
+
+export default ListaMusicas;

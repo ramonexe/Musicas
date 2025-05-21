@@ -47,8 +47,8 @@ const AdicionarMusica: React.FC = () => {
                 onChange={(e) => setAnoLancamento(e.target.value)}
             />
             <BotaoContainer>
-                <Button onClick={handleCancelar}>Cancelar</Button>
                 <Button onClick={handleAdicionarMusica}>Adicionar</Button>
+                <Button onClick={handleCancelar} variant='outline'>Cancelar</Button>
             </BotaoContainer>
         </AdicionarMusicaContainer>
     );

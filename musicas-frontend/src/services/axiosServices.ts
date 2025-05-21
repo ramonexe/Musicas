@@ -9,3 +9,13 @@ export const listar = async () => {
         throw error;
     }
 };
+
+export const salvar = async (musica: any) => {
+    try {
+        const response = await axiosInstance.post('/salvar', musica);
+        return response.data;
+    } catch (error) {
+        console.error("Error adding musica:", error);
+        throw error;
+    }
+};
