@@ -5,7 +5,7 @@ export const listar = async () => {
         const response = await axiosInstance.get('/listar');
         return response.data;
     } catch (error) {
-        console.error("Error fetching musicas:", error);
+        console.error("Erro ao buscar musicas:", error);
         throw error;
     }
 };
@@ -15,7 +15,7 @@ export const salvar = async (musica: any) => {
         const response = await axiosInstance.post('/salvar', musica);
         return response.data;
     } catch (error) {
-        console.error("Error adding musica:", error);
+        console.error("Erro ao salvar musica:", error);
         throw error;
     }
 };

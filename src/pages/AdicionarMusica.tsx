@@ -3,31 +3,54 @@ import styled from 'styled-components';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'dynamix-button';
+import { salvar } from '../services/axiosServices';
 
 const AdicionarMusica: React.FC = () => {
     const [titulo, setTitulo] = useState('');
     const [artista, setArtista] = useState('');
-    const [anoLancamento, setAnoLancamento] = useState('');
+    const [ano, setAno] = useState('');
     const navigate = useNavigate();
 
-    const handleAdicionarMusica = () => {
-        if (!titulo || !artista || !anoLancamento) {
-            toast.error('Por favor, preencha todos os campos.');
-            return;
+    const handleAdicionarMusica = async () => {
+        const musica = {
+            titulo,
+            artista,
+            ano,
+        };
+
+        console.log(musica);
+
+        try {
+            const response = await salvar(musica);
+            console.log(response.data);
+            toast.success('Música adicionada com sucesso!');
+            navigate('/');
+        } catch (error: any) {
+            console.log(error);
+            let mensagemAno = error.response?.data;
+            let mensagemErro = mensagemAno;
+            const data = error.response?.data;
+            if (typeof data === 'string') {
+                const match = data.match(/interpolatedMessage='([^']+)'/);
+                if (match && match[1]) {
+                    mensagemErro = match[1];
+                }
+            }
+            toast.error(mensagemErro);
         }
     };
 
     const handleCancelar = () => {
         setTitulo('');
         setArtista('');
-        setAnoLancamento('');
+        setAno('');
         toast.info('Adição de música cancelada.');
         navigate('/');
     };
 
     return (
         <AdicionarMusicaContainer>
-            <h1>Adicionar Nova Música</h1>
+            <h2>Adicionar Nova Música</h2>
             <Input
                 type="text"
                 placeholder="Título"
@@ -43,8 +66,13 @@ const AdicionarMusica: React.FC = () => {
             <Input
                 type="text"
                 placeholder="Ano de Lançamento"
-                value={anoLancamento}
-                onChange={(e) => setAnoLancamento(e.target.value)}
+                value={ano}
+                onChange={(e) => {
+                    const value = e.target.value;
+                    if (/^\d*$/.test(value)) {
+                        setAno(value);
+                    }
+                }}
             />
             <BotaoContainer>
                 <Button onClick={handleAdicionarMusica}>Adicionar</Button>
@@ -70,7 +98,7 @@ const AdicionarMusicaContainer = styled.div`
 const Input = styled.input`
     width: 300px;
     padding: 10px;
-    margin: 10px 0;
+    margin: 5px 0;
     background-color: #191b20;
     color: #666;
     border: 1px solid #40434d;

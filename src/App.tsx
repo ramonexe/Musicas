@@ -13,7 +13,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<ListaMusicas/>} />
-        <Route path="/adicionar" element={<AdicionarMusica />} />
+        <Route path="/salvar" element={<AdicionarMusica />} />
       </Routes>
       <ToastContainer />
     </>

@@ -34,7 +34,7 @@ const Header: React.FC = () => {
     let titulo = '';
     if (location.pathname === '/') {
         titulo = 'Lista de Músicas';
-    } else if (location.pathname === '/adicionar') {
+    } else if (location.pathname === '/salvar') {
         titulo = 'Adicionar Música';
     } else {
         titulo = 'Músicas';
@@ -48,7 +48,7 @@ const Header: React.FC = () => {
             </div>
             <BotaoContainer>
                 <Button onClick={() => navigate("/")} icon={<AudioLines />}>Lista de Músicas</Button>
-                <Button onClick={() => navigate("/adicionar")} icon={<Plus />}>Adicionar Música</Button>
+                <Button onClick={() => navigate("/salvar")} icon={<Plus />}>Adicionar Música</Button>
             </BotaoContainer>
         </HeaderContainer>
     );

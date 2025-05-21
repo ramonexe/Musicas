@@ -30,10 +30,10 @@ const ListaMusicas: React.FC = () => {
                     <MusicaId>{musica.id}</MusicaId>
                     <MusicaTitulo>{musica.titulo}</MusicaTitulo>
                     <DetalhesContainer>
-                        <MusicaDetalhes>Artista: {musica.artista}</MusicaDetalhes>
-                        <MusicaDetalhes>Ano de Lançamento: {musica.ano}</MusicaDetalhes>
+                        <MusicaDetalhes>{musica.artista}</MusicaDetalhes>
+                        <MusicaDetalhes>{musica.ano}</MusicaDetalhes>
                     </DetalhesContainer>
-                    <MusicaCadastro>Data de adição: {musica.dataCadastro}</MusicaCadastro>
+                    <MusicaCadastro>{musica.dataCadastro}</MusicaCadastro>
                 </MusicaItem>
             ))}
         </ListaMusicasContainer>
@@ -53,7 +53,7 @@ const MusicaCadastro = styled.p`
 `;
 
 const MusicaId = styled.p`
-    font-size: 18px;
+    font-size: 14px;
     margin: 0 0 5px;
 `;
 
