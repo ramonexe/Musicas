@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Botao from './Botao';
 import { useNavigate } from 'react-router-dom';
-import logo from '../../public/icon.svg';
+import logo from '../assets/icon.svg';
 import { AudioLines, Plus } from 'lucide-react';
+import { Button } from 'dynamix-button';
 
 const HeaderContainer = styled.header`
     display: flex;
@@ -27,8 +27,8 @@ const Header: React.FC = () => {
         <HeaderContainer>
             <img src={logo} alt="Logo" style={{ width: '42px', height: '42px', marginRight: '20px' }} />
             <BotaoContainer>
-                <Botao onClick={() => navigate("/")} icon={<AudioLines />}>Lista de Músicas</Botao>
-                <Botao onClick={() => navigate("/adicionar")} icon={<Plus />}>Adicionar Música</Botao>
+                <Button onClick={() => navigate("/")} icon={<AudioLines />}>Lista de Músicas</Button>
+                <Button onClick={() => navigate("/adicionar")} icon={<Plus />}>Adicionar Música</Button>
             </BotaoContainer>
         </HeaderContainer>
     );

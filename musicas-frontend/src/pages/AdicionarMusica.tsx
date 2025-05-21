@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Botao from '../components/Botao';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { Button } from 'dynamix-button';
 
 const AdicionarMusica: React.FC = () => {
     const [titulo, setTitulo] = useState('');
@@ -47,8 +47,8 @@ const AdicionarMusica: React.FC = () => {
                 onChange={(e) => setAnoLancamento(e.target.value)}
             />
             <BotaoContainer>
-                <Botao onClick={handleCancelar}>Cancelar</Botao>
-                <Botao onClick={handleAdicionarMusica}>Adicionar</Botao>
+                <Button onClick={handleCancelar}>Cancelar</Button>
+                <Button onClick={handleAdicionarMusica}>Adicionar</Button>
             </BotaoContainer>
         </AdicionarMusicaContainer>
     );

@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { getAllMusicas } from '../services/axiosServices';
+import { listar } from '../services/axiosServices';
 
-const ListaMusicas: React.FC = () => {
+export const ListaMusicas: React.FC = () => {
     const [musicas, setMusicas] = useState<any[]>([]);
 
     useEffect(() => {
         const fetchMusicas = async () => {
             try {
-                const response = await getAllMusicas();
-                setMusicas(response.data);
+                const response = await listar();
+                setMusicas(response);
+                console.log(response);
+                console.log(response.data);
             } catch (error) {
                 console.error('Erro ao buscar músicas:', error);
             }
@@ -20,15 +22,37 @@ const ListaMusicas: React.FC = () => {
 
     return (
         <ListaMusicasContainer>
-            {musicas.map((musica, index) => (
+            {Array.isArray(musicas) && musicas.map((musica, index) => (
                 <MusicaItem key={index}>
-                    <MusicaTitle>{musica.titulo}</MusicaTitle>
-                    <MusicaDetails>{musica.artista}</MusicaDetails>
+                    <MusicaId>{musica.id}</MusicaId>
+                    <MusicaTitulo>{musica.titulo}</MusicaTitulo>
+                    <DetalhesContainer>
+                        <MusicaDetalhes>Artista: {musica.artista}</MusicaDetalhes>
+                        <MusicaDetalhes>Ano de Lançamento: {musica.ano}</MusicaDetalhes>
+                    </DetalhesContainer>
+                    <MusicaCadastro>Data de adição: {musica.dataCadastro}</MusicaCadastro>
                 </MusicaItem>
             ))}
         </ListaMusicasContainer>
     );
 };
+
+const DetalhesContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+`;
+
+const MusicaCadastro = styled.p`
+    margin: 5px 0 0;
+    font-size: 12px;
+    color: #666;
+`;
+
+const MusicaId = styled.p`
+    font-size: 18px;
+    margin: 0 0 5px;
+`;
 
 const ListaMusicasContainer = styled.div`
     padding: 20px;
@@ -48,15 +72,13 @@ const MusicaItem = styled.div`
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
-const MusicaTitle = styled.h3`
+const MusicaTitulo = styled.h3`
     margin: 0;
     font-size: 18px;
 `;
 
-const MusicaDetails = styled.p`
+const MusicaDetalhes = styled.p`
     margin: 5px 0 0;
     font-size: 14px;
-    color: #666;
+    color: #999;
 `;
-
-export default ListaMusicas;
